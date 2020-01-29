@@ -1,0 +1,10 @@
+Adafruit-Blinka==3.7.1
+adafruit-circuitpython-74hc595==1.0.4
+adafruit-circuitpython-busdevice==4.1.2
+adafruit-circuitpython-charlcd==3.2.2
+adafruit-circuitpython-mcp230xx==2.2.1
+Adafruit-PlatformDetect==2.1.0
+Adafruit-PureIO==1.0.4
+mfrc522==0.0.7
+RPi.GPIO==0.7.0
+spidev==3.4
