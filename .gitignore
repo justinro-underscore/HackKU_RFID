@@ -1,3 +1,6 @@
 private_key.txt
 tests/
 registrant_data/*
+server/ngrok
+server/venv/
+server/app/__pycache__/
