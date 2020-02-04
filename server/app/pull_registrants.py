@@ -46,9 +46,9 @@ def pull_registrants():
                         print("Registrant data saved to {}".format(csv_name))
                         return obj
                 else:
-                    raise RuntimeError("Error parsing response to JSON for {}".format(getting_registrants if "registrants" else "token"))
+                    raise RuntimeError("Error parsing response to JSON for {}".format("registrants" if getting_registrants else "token"))
             else:
-                raise RuntimeError("Error getting {}".format(getting_registrants if "registrants" else "token"))
+                raise RuntimeError("Error getting {}".format(("registrants" if getting_registrants else "token")))
         except Exception as e:
             raise Exception(e)
 
