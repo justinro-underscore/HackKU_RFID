@@ -1,7 +1,8 @@
 from flask import request, jsonify, Blueprint
 from flask_api import status
-from app.data import registrant_data, rfid_refrence
+from app.data import registrant_data, rfid_refrence, schedule_data
 from schema import Schema, SchemaError
+import datetime
 
 api = Blueprint("api", __name__)
 
@@ -33,7 +34,7 @@ def set_registrant_rfid():
 
     except SchemaError as err:
         return f'Invalid JSON: {err}', status.HTTP_400_BAD_REQUEST
-    except IndexError:
+    except KeyError:
         return 'User at index {} was not found'.format(request.get_json()['r_index']), status.HTTP_404_NOT_FOUND
 
 @api.route("/rfid_get/<rfid>", methods=['GET'])
@@ -41,3 +42,10 @@ def get_rfid(rfid):
     if rfid in rfid_refrence:
         return registrant_data[rfid_refrence[rfid]]
     return "No registrants for that defined rfid!"
+
+@api.route("/schedule/", methods=['GET'])
+def get_schedule():
+    if schedule_data:
+        return str(schedule_data)
+    else:
+        return "No schedule data found"

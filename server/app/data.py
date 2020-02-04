@@ -1,4 +1,5 @@
 from app.pull_registrants import pull_registrants, retrieve_registrants
+from app.pull_schedule import get_schedule
 
 registrant_data = None
 try:
@@ -13,5 +14,12 @@ except Exception as e:
         print("Could not retrieve registration data")
         print(e)
         raise Exception("Cannot start app")
+
+schedule_data = None
+try:
+    schedule_data = get_schedule()
+except Exception as e:
+    print("Could not pull schedule data!")
+    print("Error: \"{}\"".format(e))
 
 rfid_refrence = dict()
