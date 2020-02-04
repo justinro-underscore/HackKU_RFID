@@ -6,7 +6,7 @@ import os
 
 def pull_registrants():
     try:
-        f = open("../private_key.txt", "r")
+        f = open("../local_data/private_key.txt", "r")
         if f:
             pswd = f.readline()
         else:

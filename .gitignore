@@ -1,4 +1,4 @@
-private_key.txt
+local_data/
 tests/
 registrant_data/*
 server/ngrok
