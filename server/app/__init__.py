@@ -1,10 +1,10 @@
 from flask import Flask
 from app.api import api
+from app.api_logging import start_logging
 import random
 import string
 
 def app_factory():
-
     app = Flask(__name__)
 
     try:
@@ -13,6 +13,8 @@ def app_factory():
         f.close()
 
         app.register_blueprint(api, url_prefix='/token={}'.format(token))
+
+        start_logging()
 
         return app
     except Exception as e:

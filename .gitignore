@@ -4,3 +4,5 @@ registrant_data/*
 server/ngrok
 server/venv/
 server/app/__pycache__/
+server/rfid_log.txt
+server/commands.txt
