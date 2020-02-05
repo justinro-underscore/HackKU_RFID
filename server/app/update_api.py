@@ -2,10 +2,6 @@ import requests
 import os
 import json
 
-# if not os.path.exists('commands.txt'):
-#     print("No updates needed!")
-#     exit()
-
 try:
     f = open("../commands.txt", "r")
     commands = f.readlines()
