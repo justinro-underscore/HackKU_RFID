@@ -22,4 +22,5 @@ except Exception as e:
     print("Could not pull schedule data!")
     print("Error: \"{}\"".format(e))
 
-rfid_refrence = dict()
+rfid_to_student = dict()
+rfid_to_event = dict()

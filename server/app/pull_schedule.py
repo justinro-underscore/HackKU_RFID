@@ -64,7 +64,7 @@ def get_schedule():
                     time = datetime.strptime(current_day + ": " + row[0], "%A %b %d, %Y: %I:%M %p")
                 event = {
                     "name": row[3],
-                    "time": time,
+                    "time": str(time),
                     "location": row[4]
                 }
                 events.append(event)

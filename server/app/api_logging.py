@@ -6,7 +6,7 @@ class logger_cls:
         self.logger = None
 
 logger_obj = logger_cls()
-# log_rfid_set = lambda json_obj: "rfid_set/ | {}".format(json_obj)
+log_rfid_set = lambda json_obj: logger_obj.logger.write("rfid_set/ | {}\n".format(json.dumps(json_obj)))
 log_rfid_log = lambda json_obj: logger_obj.logger.write("rfid_log/ | {}\n".format(json.dumps(json_obj)))
 
 def start_logging():
