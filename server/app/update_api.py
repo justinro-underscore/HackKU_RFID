@@ -11,7 +11,7 @@ except:
     print("No updates needed!")
     exit()
 
-f = open('../../local_data/private_key.txt', 'r')
+f = open('../../local_data/api_key.txt', 'r')
 token = f.read()
 f.close()
 base_url = "http://127.0.0.1:5000/token={}/".format(token)

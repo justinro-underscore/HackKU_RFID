@@ -8,7 +8,7 @@ def app_factory():
     app = Flask(__name__)
 
     try:
-        f = open('../local_data/private_key.txt', 'r')
+        f = open('../local_data/api_key.txt', 'r')
         token = f.read()
         f.close()
 
