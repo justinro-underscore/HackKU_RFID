@@ -1,6 +1,7 @@
 local_data/
 tests/
 registrant_data/*
+registrations/__pycache__/
 server/ngrok
 server/venv/
 server/app/__pycache__/
