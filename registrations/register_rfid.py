@@ -30,6 +30,8 @@ def run_registration():
                     if not check_confirmation("Warning! Person already has RFID set for them, do you want to override?"):
                         print("Registration cancelled")
                         continue
+                if reg["level_of_study"] == "High School":
+                    print("\nNOTE: This person is in high school. Verify and give them a Minor Participant form\n")
                 if datetime.strptime(reg["date"], "%a, %d %b %Y %H:%M:%S %Z").date() == datetime.now().date():
                     print("\nNOTE: This person has registered today. Do not give them a swag bag!\n")
                 rfid = input("Scan RFID card: ")
