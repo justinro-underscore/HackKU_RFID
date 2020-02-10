@@ -19,6 +19,6 @@ base_url = "http://127.0.0.1:5000/token={}/".format(token)
 for command in commands:
     (ext, data) = command.split(" | ")
     print(json.loads(data))
-    res = requests.post(base_url + ext, json=json.loads(data), params={'log': False})
+    res = requests.post(base_url + ext, json=json.loads(data), params={'log': 0})
     if not res:
         print("Error! Update did not go through!")

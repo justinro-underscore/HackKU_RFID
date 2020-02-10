@@ -35,14 +35,19 @@ def log_rfid():
 
         rfid = json_obj['rfid_num']
 
+        try:
+            student = json.loads(get_student(rfid))
+        except:
+            return "RFID {} has not been registered.".format(rfid), status.HTTP_404_NOT_FOUND
+
         log_rfid_event(rfid, json_obj['event_num'])
 
         if bool(int(request.args.get("log", default="1"))):
             log_rfid_log(json_obj)
         # else:
         #     return "Student {} logged for event {}".format(rfid_to_student[rfid], schedule_data[json_obj['event_num']]), status.HTTP_200_OK
-        print("Student {} logged for event {}".format(json.loads(get_student(rfid))["first_name"], json.loads(get_schedule())[int(json_obj['event_num'])]["name"]))
-        return get_student(rfid), status.HTTP_200_OK
+        print("Student {} logged for event {}".format(student["first_name"], json.loads(get_schedule())[int(json_obj['event_num'])]["name"]))
+        return student, status.HTTP_200_OK
     except SchemaError as err:
         return f'Invalid JSON: {err}', status.HTTP_400_BAD_REQUEST
     except KeyError:

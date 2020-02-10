@@ -52,12 +52,16 @@ def get_schedule():
 
 def retrieve_student(rfid):
     get_url = "https://census.hackku.org/rfid"
+    print(rfid.strip())
 
-    res = requests.get(get_url, params={"token": data_h.token, "rfid": rfid})
-    if res:
-        return json.loads(res.text)
-    else:
-        raise RuntimeError("Error, could not find student")
+    for i in range(2):
+        if i == 1:
+            data_h.token = get_token()
+        res = requests.get(get_url, params={"token": data_h.token, "rfid": rfid.strip()})
+        if res:
+            return json.loads(res.text)
+        elif i == 1:
+            raise RuntimeError("Error, could not find student")
 
 def get_student(rfid):
     if rfid in data_h.rfid_to_student:
