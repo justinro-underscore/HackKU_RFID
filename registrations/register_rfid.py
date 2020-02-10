@@ -1,7 +1,8 @@
 from tools import get_token, get_registrant, set_registrant_rfid
+from datetime import datetime
 
-def check_confirmation(obj_str):
-    in_str = input("Is {} correct? (Y/n) ".format(obj_str)).lower()
+def check_confirmation(question_str):
+    in_str = input("{} (Y/n) ".format(question_str)).lower()
     if in_str == "" or in_str == "y" or in_str == "yes":
         return True
     return False
@@ -24,7 +25,15 @@ def run_registration():
             return
         try:
             reg = get_registrant(email, token)
-            if check_confirmation("{} {} ({})".format(reg["first_name"], reg["last_name"], reg["rfid"])):
+            if check_confirmation("Is {} {} ({}) correct?".format(reg["first_name"], reg["last_name"], reg["email"])):
+                if reg["rfid"]:
+                    if not check_confirmation("Warning! Person already has RFID set for them, do you want to override?"):
+                        print("Registration cancelled")
+                        continue
+                if reg["level_of_study"] == "High School":
+                    print("\nNOTE: This person is in high school. Verify and give them a Minor Participant form\n")
+                if datetime.strptime(reg["date"], "%a, %d %b %Y %H:%M:%S %Z").date() == datetime.now().date():
+                    print("\nNOTE: This person has registered today. Do not give them a swag bag!\n")
                 rfid = input("Scan RFID card: ")
                 print("Registering {} for {}".format(rfid, reg["first_name"] + " " + reg["last_name"]))
                 set_registrant_rfid(email, token, rfid)
